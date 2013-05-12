@@ -239,7 +239,7 @@ dialogModule.provider("$dialog", function(){
 
       angular.forEach(this.options.resolve || [], function(value, key) {
         keys.push(key);
-        values.push(angular.isString(value) ? $injector.get(value) : $injector.invoke(value));
+        values.push(angular.isString(value) ? $injector.get(value) : (angular.isFunction(value)) ? $injector.invoke(value) : value);
       });
 
       keys.push('$template');
